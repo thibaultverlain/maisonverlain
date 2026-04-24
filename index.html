@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Verlain — Sacs de Luxe & Personal Shopper</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent:#b8922a; --accent-light:#d4af5a;
+  --bg:#f7f4ef; --bg-alt:#f0ece4; --bg-card:#ebe6dc;
+  --border:#ddd6c8; --border-gold:#c9a84c;
+  --text:#2a2210; --text-muted:#7a6a42; --text-dim:#a09070;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);font-weight:300;letter-spacing:0.03em;font-size:15px;line-height:1.7;overflow-x:hidden;}
+img{max-width:100%;height:auto;display:block;}
+a{color:inherit;text-decoration:none;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 60px;height:72px;background:rgba(247,244,239,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-gold);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--text);letter-spacing:0.08em;text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:32px;align-items:center;list-style:none;}
+.nav-links a{font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.lang-btn{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;background:none;border:1px solid var(--border-gold);color:var(--accent);padding:6px 14px;cursor:pointer;transition:all 0.2s;font-family:'Jost',sans-serif;}
+.lang-btn:hover{background:var(--accent);color:var(--bg);}
+#menuBtn{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
+#menuBtn span{width:22px;height:1.5px;background:var(--text-muted);display:block;}
+
+#mobileMenu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg-alt);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+#mobileMenu a{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--text);text-decoration:none;letter-spacing:0.06em;}
+#mobileMenu a:hover{color:var(--accent);}
+#mobileMenu .close-btn{position:absolute;top:28px;right:28px;background:none;border:none;font-size:26px;cursor:pointer;color:var(--text-muted);}
+#mobileMenu .mob-lang{font-size:12px;font-weight:500;letter-spacing:0.1em;background:none;border:1px solid var(--border-gold);color:var(--accent);padding:8px 20px;cursor:pointer;font-family:'Jost',sans-serif;margin-top:8px;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;background:var(--bg-alt);border-bottom:2px solid var(--border-gold);padding:100px 60px 80px;position:relative;overflow:hidden;}
+.hero-deco{position:absolute;right:4vw;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:280px;font-weight:300;color:rgba(184,146,42,0.05);line-height:1;pointer-events:none;user-select:none;letter-spacing:-0.04em;}
+.hero-content{max-width:660px;position:relative;z-index:1;}
+.hero-label{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:block;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7.5vw,92px);font-weight:300;color:var(--text);line-height:1.0;margin-bottom:28px;}
+.hero-title em{font-style:italic;color:var(--accent);}
+.hero-desc{font-size:16px;line-height:2;color:var(--text-muted);max-width:500px;margin-bottom:44px;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-gold{display:inline-block;background:var(--accent);color:var(--bg);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;padding:16px 44px;transition:background 0.3s;border:none;cursor:pointer;font-family:'Jost',sans-serif;}
+.btn-gold:hover{background:var(--accent-light);}
+.btn-outline{display:inline-block;border:1px solid var(--accent);color:var(--accent);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;padding:15px 40px;transition:all 0.3s;background:none;cursor:pointer;font-family:'Jost',sans-serif;}
+.btn-outline:hover{background:var(--accent);color:var(--bg);}
+
+/* MAISONS */
+section{padding:100px 60px;}
+.section-label{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:block;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,48px);font-weight:300;color:var(--text);line-height:1.2;margin-bottom:40px;}
+.section-title em{font-style:italic;color:var(--accent);}
+
+#maisons{background:var(--bg);border-bottom:2px solid var(--border-gold);}
+.maisons-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:56px;}
+.maison-card{background:var(--bg-alt);border:1px solid var(--border);overflow:hidden;transition:border-color 0.3s;}
+.maison-card:hover{border-color:var(--border-gold);}
+.maison-swatch{aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;position:relative;}
+.maison-name-big{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:300;letter-spacing:0.1em;color:rgba(42,34,16,0.15);}
+.maison-card__info{padding:20px 24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.maison-card__name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--text);}
+.maison-arrow{color:var(--accent);font-size:18px;transition:transform 0.2s;}
+.maison-card:hover .maison-arrow{transform:translateX(4px);}
+
+/* Maison swatches */
+.swatch-hermes{background:linear-gradient(135deg,#E8501A 0%,#C13D0E 50%,#F06030 100%);}
+.swatch-chanel{background:linear-gradient(135deg,#1A1A1A 0%,#000000 50%,#2C2C2C 100%);}
+.swatch-goyard{background:linear-gradient(135deg,#E8B830 0%,#C99A1A 50%,#F0CC50 100%);}
+.swatch-dior{background:linear-gradient(135deg,#8C7B6B 0%,#6B5A4A 50%,#A08070 100%);}
+
+/* SERVICES */
+#services{background:var(--bg-alt);border-bottom:2px solid var(--border-gold);padding:0;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+.service-block{padding:80px 60px;border-right:1px solid var(--border);position:relative;overflow:hidden;}
+.service-block:last-child{border-right:none;background:var(--bg-card);}
+.service-num{font-family:'Cormorant Garamond',serif;font-size:100px;font-weight:300;color:rgba(184,146,42,0.08);line-height:1;position:absolute;top:20px;right:28px;}
+.service-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--text);margin-bottom:16px;line-height:1.2;}
+.service-title em{font-style:italic;color:var(--accent);}
+.service-desc{font-size:14px;line-height:2;color:var(--text-muted);margin-bottom:28px;max-width:360px;}
+.service-steps{list-style:none;}
+.service-steps li{font-size:13px;color:var(--text-muted);padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;}
+.service-steps li:last-child{border-bottom:none;}
+.sn{color:var(--accent);font-family:'Cormorant Garamond',serif;font-size:15px;min-width:18px;}
+
+/* ENGAGEMENTS */
+#engagements{background:var(--bg);border-bottom:2px solid var(--border-gold);text-align:center;}
+.eng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;}
+.eng-item{padding:48px 32px;border:1px solid var(--border);}
+.eng-icon{font-size:32px;margin-bottom:20px;color:var(--accent);}
+.eng-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--text);margin-bottom:10px;}
+.eng-desc{font-size:14px;color:var(--text-muted);line-height:1.9;}
+
+/* CONTACT */
+#contact{background:var(--bg-card);border-bottom:2px solid var(--border-gold);text-align:center;}
+.contact-desc{font-size:15px;line-height:1.9;color:var(--text-muted);max-width:480px;margin:0 auto 52px;}
+.contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1000px;margin:0 auto 52px;}
+.contact-item{background:var(--bg-alt);border:1px solid var(--border);padding:32px 20px;}
+.contact-item:hover{border-color:var(--border-gold);}
+.contact-lbl{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.contact-val{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text);word-break:break-word;}
+.contact-val a{color:var(--text);text-decoration:none;transition:color 0.2s;}
+.contact-val a:hover{color:var(--accent);}
+
+/* FOOTER */
+footer{background:var(--bg-alt);border-top:2px solid var(--border-gold);padding:40px 60px;display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--text-muted);letter-spacing:0.08em;}
+.footer-logo span{color:var(--accent);}
+.footer-copy{font-size:11px;color:var(--text-dim);letter-spacing:0.08em;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:0 20px;height:60px;}
+  .nav-links{display:none !important;}
+  .nav-logo{font-size:18px;}
+  #menuBtn{display:flex !important;}
+  .hero{padding:80px 20px 60px;min-height:auto;}
+  .hero-deco{display:none;}
+  .hero-title{font-size:clamp(40px,10vw,60px);}
+  .hero-desc{font-size:14px;}
+  .hero-btns{flex-direction:column;align-items:stretch;}
+  .hero-btns .btn-gold,.hero-btns .btn-outline{width:100%;text-align:center;padding:16px;}
+  section{padding:60px 20px;}
+  .maisons-grid{grid-template-columns:1fr 1fr;}
+  .services-grid{grid-template-columns:1fr;}
+  .service-block{border-right:none;border-bottom:1px solid var(--border);padding:48px 24px;}
+  .eng-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr 1fr !important;}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:28px 20px;}
+}
+@media(max-width:480px){
+  .maisons-grid{grid-template-columns:1fr 1fr;}
+  .contact-grid{grid-template-columns:1fr !important;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">Maison <span>Verlain</span></a>
+  <ul class="nav-links">
+    <li><a href="#maisons" data-fr="Maisons" data-en="Houses">Maisons</a></li>
+    <li><a href="#services" data-fr="Services" data-en="Services">Services</a></li>
+    <li><a href="#engagements" data-fr="Engagements" data-en="Commitments">Engagements</a></li>
+    <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
+    <li><button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button></li>
+  </ul>
+  <button id="menuBtn" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="#maisons" onclick="toggleMenu()" data-fr="Maisons" data-en="Houses">Maisons</a>
+  <a href="#services" onclick="toggleMenu()" data-fr="Services" data-en="Services">Services</a>
+  <a href="#contact" onclick="toggleMenu()" data-fr="Contact" data-en="Contact">Contact</a>
+  <button class="mob-lang" id="mobileLang" onclick="toggleLang();toggleMenu();">EN</button>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-deco">MV</div>
+  <div class="hero-content">
+    <span class="hero-label" data-fr="Personal Shopper Luxe — Europe" data-en="Luxury Personal Shopper — Europe">Personal Shopper Luxe — Europe</span>
+    <h1 class="hero-title">Maison <em>Verlain</em></h1>
+    <p class="hero-desc" data-fr="Votre accès privilégié aux plus grandes maisons de luxe. Hermès, Chanel, Goyard, Dior — nous trouvons, authentifions et livrons les pièces que vous cherchez, partout en Europe." data-en="Your privileged access to the world's greatest luxury houses. Hermès, Chanel, Goyard, Dior — we find, authenticate and deliver the pieces you're looking for, across Europe.">Votre accès privilégié aux plus grandes maisons de luxe. Hermès, Chanel, Goyard, Dior — nous trouvons, authentifions et livrons les pièces que vous cherchez, partout en Europe.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-gold" data-fr="Nos services" data-en="Our services">Nos services</a>
+      <a href="#contact" class="btn-outline" data-fr="Nous contacter" data-en="Contact us">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAISONS -->
+<section id="maisons">
+  <span class="section-label" data-fr="Nos maisons partenaires" data-en="Our partner houses">Nos maisons partenaires</span>
+  <h2 class="section-title">Les <em>maisons</em></h2>
+  <div class="maisons-grid">
+    <div class="maison-card">
+      <div class="maison-swatch swatch-hermes"><div class="maison-name-big">Hermès</div></div>
+      <div class="maison-card__info"><div class="maison-card__name">Hermès</div><div class="maison-arrow">→</div></div>
+    </div>
+    <div class="maison-card">
+      <div class="maison-swatch swatch-chanel"><div class="maison-name-big" style="color:rgba(255,255,255,0.12);">Chanel</div></div>
+      <div class="maison-card__info"><div class="maison-card__name">Chanel</div><div class="maison-arrow">→</div></div>
+    </div>
+    <div class="maison-card">
+      <div class="maison-swatch swatch-goyard"><div class="maison-name-big">Goyard</div></div>
+      <div class="maison-card__info"><div class="maison-card__name">Goyard</div><div class="maison-arrow">→</div></div>
+    </div>
+    <div class="maison-card">
+      <div class="maison-swatch swatch-dior"><div class="maison-name-big">Dior</div></div>
+      <div class="maison-card__info"><div class="maison-card__name">Dior</div><div class="maison-arrow">→</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-grid">
+    <div class="service-block">
+      <div class="service-num">01</div>
+      <h3 class="service-title">Personal <em>Shopping</em></h3>
+      <p class="service-desc" data-fr="Vous avez un sac précis en tête ? Thibault se déplace en boutique pour vous, sélectionne la pièce, la vérifie et vous l'envoie où que vous soyez en Europe." data-en="Have a specific bag in mind? Thibault visits the boutique for you, selects the piece, verifies it and sends it to you wherever you are in Europe.">Vous avez un sac précis en tête ? Thibault se déplace en boutique pour vous, sélectionne la pièce, la vérifie et vous l'envoie où que vous soyez en Europe.</p>
+      <ul class="service-steps">
+        <li><span class="sn">1</span><span data-fr="Envoyez votre demande par message" data-en="Send your request by message">Envoyez votre demande par message</span></li>
+        <li><span class="sn">2</span><span data-fr="Confirmation disponibilité et prix" data-en="Availability and price confirmed">Confirmation disponibilité et prix</span></li>
+        <li><span class="sn">3</span><span data-fr="Réception de votre commande emballée" data-en="Your order received, carefully packaged">Réception de votre commande emballée</span></li>
+      </ul>
+    </div>
+    <div class="service-block">
+      <div class="service-num">02</div>
+      <h3 class="service-title">Sourcing <em>sur demande</em></h3>
+      <p class="service-desc" data-fr="Un modèle introuvable ? Une référence en liste d'attente ? Nous activons notre réseau pour trouver votre sac — neuf ou seconde main selon votre préférence." data-en="An unavailable model? A waitlisted reference? We activate our network to find your bag — new or pre-owned according to your preference.">Un modèle introuvable ? Une référence en liste d'attente ? Nous activons notre réseau pour trouver votre sac — neuf ou seconde main selon votre préférence.</p>
+      <ul class="service-steps">
+        <li><span class="sn">✦</span><span>Hermès &middot; Chanel &middot; Goyard &middot; Dior</span></li>
+        <li><span class="sn">✦</span><span data-fr="Neuf en boutique ou seconde main" data-en="New in store or pre-owned">Neuf en boutique ou seconde main</span></li>
+        <li><span class="sn">✦</span><span data-fr="France et Europe — réponse sous 24h" data-en="France and Europe — reply within 24h">France et Europe — réponse sous 24h</span></li>
+      </ul>
+    </div>
+    <div class="service-block">
+      <div class="service-num">03</div>
+      <h3 class="service-title">Authentification <em>& conseil</em></h3>
+      <p class="service-desc" data-fr="Chaque pièce proposée est rigoureusement contrôlée avant livraison. Nous vous conseillons également sur les références, les investissements et la valeur de revente." data-en="Every piece offered is rigorously checked before delivery. We also advise you on references, investments and resale value.">Chaque pièce proposée est rigoureusement contrôlée avant livraison. Nous vous conseillons également sur les références, les investissements et la valeur de revente.</p>
+      <ul class="service-steps">
+        <li><span class="sn">✦</span><span data-fr="Contrôle authenticité systématique" data-en="Systematic authenticity check">Contrôle authenticité systématique</span></li>
+        <li><span class="sn">✦</span><span data-fr="Conseil investissement & valeur" data-en="Investment & value advice">Conseil investissement &amp; valeur</span></li>
+        <li><span class="sn">✦</span><span data-fr="Accompagnement personnalisé" data-en="Personalised support">Accompagnement personnalisé</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section id="engagements">
+  <span class="section-label" data-fr="Notre promesse" data-en="Our promise">Notre promesse</span>
+  <h2 class="section-title">Nos <em>engagements</em></h2>
+  <div class="eng-grid">
+    <div class="eng-item">
+      <div class="eng-icon">✦</div>
+      <div class="eng-title" data-fr="Authenticité garantie" data-en="Guaranteed authenticity">Authenticité garantie</div>
+      <p class="eng-desc" data-fr="Chaque pièce est contrôlée et authentifiée avant d'être proposée. Votre tranquillité d'esprit est notre priorité." data-en="Every piece is checked and authenticated before being offered. Your peace of mind is our priority.">Chaque pièce est contrôlée et authentifiée avant d'être proposée. Votre tranquillité d'esprit est notre priorité.</p>
+    </div>
+    <div class="eng-item">
+      <div class="eng-icon">✦</div>
+      <div class="eng-title" data-fr="Service personnalisé" data-en="Personalised service">Service personnalisé</div>
+      <p class="eng-desc" data-fr="Thibault vous accompagne personnellement à chaque étape — de la recherche à la livraison." data-en="Thibault personally accompanies you at every step — from search to delivery.">Thibault vous accompagne personnellement à chaque étape — de la recherche à la livraison.</p>
+    </div>
+    <div class="eng-item">
+      <div class="eng-icon">✦</div>
+      <div class="eng-title" data-fr="Livraison Europe" data-en="European delivery">Livraison Europe</div>
+      <p class="eng-desc" data-fr="Expédition soignée partout en Europe. Remise en main propre possible en région parisienne." data-en="Careful shipping across Europe. Hand delivery available in the Paris region.">Expédition soignée partout en Europe. Remise en main propre possible en région parisienne.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="section-label" data-fr="Parlons-nous" data-en="Let's talk">Parlons-nous</span>
+  <h2 class="section-title">Nous <em>contacter</em></h2>
+  <p class="contact-desc" data-fr="Un sac en tête ? Une question ? Contactez-nous directement — nous répondons sous 24h." data-en="A bag in mind? A question? Contact us directly — we reply within 24 hours.">Un sac en tête ? Une question ? Contactez-nous directement — nous répondons sous 24h.</p>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-lbl">Instagram</div>
+      <div class="contact-val"><a href="https://instagram.com/maisonverlain" target="_blank">@maisonverlain</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-lbl" data-fr="Téléphone" data-en="Phone">Téléphone</div>
+      <div class="contact-val"><a href="tel:+33756839656">07 56 83 96 56</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-lbl">Email</div>
+      <div class="contact-val"><a href="mailto:contact@maisonverlain.com">contact@<br>maisonverlain.com</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-lbl" data-fr="Remise en main propre" data-en="Hand delivery">Remise en main propre</div>
+      <div class="contact-val" data-fr="Région parisienne" data-en="Paris area">Région parisienne</div>
+    </div>
+  </div>
+  <a href="https://wa.me/33756839656" target="_blank" class="btn-gold" data-fr="Envoyer un message WhatsApp" data-en="Send a WhatsApp message">Envoyer un message WhatsApp</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Maison <span>Verlain</span></div>
+  <div class="footer-copy" data-fr="&#169; 2026 Maison Verlain — Personal Shopper Luxe" data-en="&#169; 2026 Maison Verlain — Luxury Personal Shopper">&#169; 2026 Maison Verlain — Personal Shopper Luxe</div>
+</footer>
+
+<script>
+let lang='fr';
+function toggleLang(){
+  lang=lang==='fr'?'en':'fr';
+  const label=lang==='fr'?'EN':'FR';
+  document.getElementById('langToggle').textContent=label;
+  const mob=document.getElementById('mobileLang');
+  if(mob)mob.textContent=label;
+  document.querySelectorAll('[data-fr]').forEach(el=>{
+    const t=el.getAttribute('data-'+lang);
+    if(t)el.innerHTML=t;
+  });
+}
+function toggleMenu(){
+  const m=document.getElementById('mobileMenu');
+  const open=m.style.display==='flex';
+  m.style.display=open?'none':'flex';
+  document.body.style.overflow=open?'':'hidden';
+}
+</script>
+</body>
+</html>
